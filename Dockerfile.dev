@@ -1,0 +1,13 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+RUN chown -R node.node /app
+COPY src .
+COPY public .
+COPY build .
+COPY package-lock.json .
+
+CMD ["npm", "run", "start"]
